@@ -38,57 +38,52 @@ body::before {
   z-index: -1;
 }
 
-/* Additional noise grain effect */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
-  opacity: 0.12;
-  pointer-events: none;
-  z-index: -1;
-  animation: grain 30s steps(10) infinite;
+
+
+/* ===== Event Cards ===== */
+
+.event-card {
+  @apply relative rounded-2xl p-8 text-center
+         bg-white/5 backdrop-blur-xl
+         border border-white/10
+         transition-all duration-300
+         overflow-hidden;
 }
 
-@keyframes grain {
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-  10% {
-    transform: translate(-2%, -3%);
-  }
-  20% {
-    transform: translate(-4%, 2%);
-  }
-  30% {
-    transform: translate(2%, -5%);
-  }
-  40% {
-    transform: translate(-2%, 5%);
-  }
-  50% {
-    transform: translate(-3%, 3%);
-  }
-  60% {
-    transform: translate(4%, 0%);
-  }
-  70% {
-    transform: translate(0%, 4%);
-  }
-  80% {
-    transform: translate(1%, 6%);
-  }
-  90% {
-    transform: translate(-3%, 2%);
-  }
-}
-.clip-path-diagonal {
-  clip-path: polygon(
-    20% 0%,
-    100% 0%,
-    100% 100%,
-    0% 100%
+.event-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top,
+    rgba(168, 85, 247, 0.35),
+    transparent 70%
   );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.event-card:hover::before {
+  opacity: 1;
+}
+
+.event-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(219, 39, 119, 0.5);
+  box-shadow:
+    0 0 40px rgba(168, 85, 247, 0.25),
+    0 0 80px rgba(219, 39, 119, 0.15);
+}
+
+.event-icon {
+  @apply text-2xl mb-4;
+}
+
+.event-card h3 {
+  @apply text-lg font-semibold text-[#f5d0fe];
+}
+
+.event-card p {
+  @apply text-sm text-[#e9d5ff]/80 mt-2;
 }
 
