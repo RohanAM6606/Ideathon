@@ -1,16 +1,20 @@
-import React from 'react'
-import Navbar from '../components/common/Navbar'
-import HeroSection from '../components/hero/HeroSection'
-import About from '../components/about/About'
+import React from "react";
+import Navbar from "../components/common/Navbar";
+import HeroSection from "../components/hero/HeroSection";
+import About from "../components/about/About";
+import EventDetails from "../components/events/EventDetails";
+import Footer from "../components/common/Footer"; // ✅ FIX
 
 const Home = () => {
   return (
     <div>
       <Navbar />
       <HeroSection />
-      <About/>
+      <About />
+      <EventDetails />
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
