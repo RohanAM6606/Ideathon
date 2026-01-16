@@ -5,7 +5,7 @@ import { Mail, Phone, MapPin } from "lucide-react";
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-black text-white">
-      
+
       {/* Gradient glow background */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/40 via-black to-pink-900/40" />
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
@@ -13,6 +13,7 @@ export default function Footer() {
       {/* Top glow line */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-pink-500 to-transparent" />
 
+      {/* Main content */}
       <div className="relative max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-3 gap-14">
 
         {/* Brand / About */}
@@ -33,16 +34,16 @@ export default function Footer() {
           </h3>
           <ul className="space-y-2 text-sm text-gray-300">
             <li>
-              <span className="text-white">Date:</span> October 22, 2025
+              <span className="text-white">Date:</span> TBA
             </li>
             <li>
-              <span className="text-white">Duration:</span> 8 Hours
+              <span className="text-white">Duration:</span> TBA
             </li>
             <li>
               <span className="text-white">Venue:</span> SRM University
             </li>
             <li>
-              <span className="text-white">Prize Pool:</span> ₹20,000
+              <span className="text-white">Prize Pool:</span> TBA
             </li>
           </ul>
         </div>
@@ -72,7 +73,14 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="relative border-t border-white/10 py-6 text-center text-xs text-gray-400">
         © {new Date().getFullYear()} SRM Hackathon. All rights reserved.
+        <span className="block mt-2 text-gray-500">
+          Built by{" "}
+          <span className="text-pink-400 font-medium">
+            SRM Hackathon Web Team
+          </span>
+        </span>
       </div>
+
     </footer>
   );
 }
