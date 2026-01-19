@@ -2,7 +2,7 @@ import heroBg from "../../assets/images/hero-bg.webp";
 import unionSvg from "../../assets/images/Union.svg";
 import charSvg from "../../assets/images/char.svg";
 
-export default function HeroSection() {
+export default function HeroSection({ onNavigateToRegistration }) {
   return (
     <section className="relative min-h-screen overflow-hidden">
 

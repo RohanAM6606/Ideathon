@@ -12,6 +12,13 @@ const Navbar = () => {
     { id: "register", label: "Register" },
   ];
 
+  const handleNavClick = (itemId) => {
+    setActiveSection(itemId);
+    if (itemId === 'register' && onNavigateToRegistration) {
+      onNavigateToRegistration();
+    }
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
       <div className="relative backdrop-blur-lg bg-white/5 border-b border-white/10 shadow-2xl">
