@@ -7,14 +7,14 @@ export default function HeroSection() {
     <section className="relative min-h-screen overflow-hidden">
 
       {/* Background Image */}
-      <img 
+      <img
         src={heroBg}
         alt="Hero Background"
         className="absolute inset-0 w-full h-full object-cover"
       />
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 w-full h-full bg-black/50 z-[1]" />
+      <div className="absolute inset-0 w-full h-full bg-black/55 z-[1]" />
 
       {/* Union SVG Overlay - Responsive positioning */}
       <img 
@@ -56,7 +56,8 @@ export default function HeroSection() {
               textShadow: '1px 1px 3px rgba(0,0,0,0.5)'
             }}
           >
-            Turn bold ideas into real solutions. Compete with the best, pitch to impress, and rise above the rest.
+            Turn bold ideas into real solutions. Compete with the best, pitch to
+            impress, and rise above the rest.
           </p>
 
           
@@ -75,9 +76,9 @@ export default function HeroSection() {
               <span className="absolute inset-0 rounded-lg bg-white opacity-0 group-hover:animate-ping"></span>
             </button>
           </div>
+
         </div>
       </div>
-
     </section>
   );
 }

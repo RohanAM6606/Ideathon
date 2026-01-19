@@ -1,4 +1,4 @@
- import React, { useState } from "react";
+import React, { useState } from "react";
 import logoImage from "../../assets/images/hack-logo.png";
 
 const Navbar = () => {
