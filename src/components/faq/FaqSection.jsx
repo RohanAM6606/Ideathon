@@ -1,3 +1,4 @@
+import './FaqSection.css'
 import { ChevronDown } from 'lucide-react'
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
@@ -38,7 +39,7 @@ const FaqSection = () => {
 
   return (
     <motion.section
-      className="section"
+      className="section pb-32"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
