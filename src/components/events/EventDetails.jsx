@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { MapPin, Calendar, Clock, Trophy, Users, Zap } from "lucide-react";
 import GridBackground from "../ui/GridBackground";
-import Godimage from "../../assets/images/god.svg";
+import Godimage from "../../assets/images/God.svg";
 
 const EventDetails = () => {
   return (
