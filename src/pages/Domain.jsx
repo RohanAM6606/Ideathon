@@ -1,130 +1,181 @@
-import React from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
-import heroBg from "../assets/images/hero-bg.webp";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 const domains = [
-  { title: "HEALTH-TECH", icon: "🩺", quote: "Tech that saves lives." },
-  { title: "IOT", icon: "📡", quote: "The world, wired and alive." },
-  { title: "AI", icon: "🤖", quote: "Intelligence, engineered." },
-  { title: "BLOCKCHAIN", icon: "⛓️", quote: "Trust, rewritten." },
-  { title: "SUSTAINABILITY", icon: "🌱", quote: "Innovation for tomorrow." },
+  {
+    title: "HEALTH-TECH",
+    subtitle: "Tech that saves lives.",
+    description: "Developing solutions that heal, support, and empower putting people at the heart of technological progress.",
+    icon: "🩺"
+  },
+  {
+    title: "IOT",
+    subtitle: "The world, wired and alive.",
+    description: "Connecting devices and systems to create smarter, more responsive environments for everyday life.",
+    icon: "📡"
+  },
+  {
+    title: "AI",
+    subtitle: "Intelligence, engineered.",
+    description: "Harnessing artificial intelligence to solve real-world challenges, uplift communities, and create a more equitable future.",
+    icon: "🤖"
+  },
+  {
+    title: "BLOCKCHAIN",
+    subtitle: "Trust, rewritten.",
+    description: "Building secure, transparent, and decentralized systems that revolutionize how we exchange value and information.",
+    icon: "⛓️"
+  },
+  {
+    title: "SUSTAINABILITY",
+    subtitle: "Innovation for tomorrow.",
+    description: "Designing technologies that balance convenience with responsibility shaping smarter, greener, and more resilient lifestyles.",
+    icon: "🌱"
+  }
 ];
 
-const Domain = () => {
-  const SIZE = 700;
-  const BIG_RADIUS = SIZE / 2;
-  const DOMAIN_SIZE = 180;
-  const angleStep = 360 / domains.length;
-  const ORBIT_RADIUS = BIG_RADIUS - DOMAIN_SIZE / 2;
-
-  const rotation = useMotionValue(0);
-  const inverseRotation = useTransform(rotation, (v) => -v);
+const DomainCard = ({ domain, index }) => {
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      
-      <img
-        src={heroBg}
-        alt="Domains background"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-      <div className="absolute inset-0 bg-black/70" />
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative group cursor-pointer h-full"
+    >
+      {/* Animated zigzag line on left border - shows on hover */}
+      {isHovered && (
+        <div className="absolute -left-1 top-0 bottom-0 w-1 overflow-hidden pointer-events-none z-10">
+          <svg className="absolute w-full h-full" viewBox="0 0 10 100" preserveAspectRatio="none">
+            {/* Glowing outer line */}
+            <motion.path
+              d="M5 0 L10 5 L0 10 L10 15 L0 20 L10 25 L0 30 L10 35 L0 40 L10 45 L0 50 L10 55 L0 60 L10 65 L0 70 L10 75 L0 80 L10 85 L0 90 L10 95 L5 100"
+              fill="none"
+              stroke="rgba(168, 85, 247, 0.5)"
+              strokeWidth="6"
+              filter="blur(4px)"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+            />
+            {/* Middle glow */}
+            <motion.path
+              d="M5 0 L10 5 L0 10 L10 15 L0 20 L10 25 L0 30 L10 35 L0 40 L10 45 L0 50 L10 55 L0 60 L10 65 L0 70 L10 75 L0 80 L10 85 L0 90 L10 95 L5 100"
+              fill="none"
+              stroke="rgba(168, 85, 247, 0.7)"
+              strokeWidth="3"
+              filter="blur(2px)"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+            />
+            {/* Sharp inner line */}
+            <motion.path
+              d="M5 0 L10 5 L0 10 L10 15 L0 20 L10 25 L0 30 L10 35 L0 40 L10 45 L0 50 L10 55 L0 60 L10 65 L0 70 L10 75 L0 80 L10 85 L0 90 L10 95 L5 100"
+              fill="none"
+              stroke="rgba(168, 85, 247, 1)"
+              strokeWidth="2"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+            />
+          </svg>
+        </div>
+      )}
 
-      <div className="relative" style={{ width: SIZE, height: SIZE }}>
-        
-        <motion.div
-          className="absolute inset-0 rounded-full border border-purple-500/50
-                     shadow-[0_0_150px_rgba(168,85,247,0.8)]
-                     animate-pulseGlow"
-        />
+      {/* Main card */}
+      <motion.div
+        className={`relative h-full bg-gradient-to-br from-purple-950/50 via-black/80 to-black/70 
+                    border backdrop-blur-xl rounded-xl overflow-hidden
+                    transition-all duration-300 p-6 sm:p-8
+                    ${isHovered 
+                      ? 'border-purple-500/40 shadow-[0_0_30px_rgba(168,85,247,0.3)]' 
+                      : 'border-purple-900/30 shadow-xl'}`}
+        whileHover={{ 
+          scale: 1.02,
+          boxShadow: '0 0 20px rgba(168, 85, 247, 0.25)',
+          borderColor: 'rgba(168, 85, 247, 0.4)'
+        }}
+        transition={{ duration: 0.3 }}
+      >
+        {/* Icon */}
+        <div className="text-4xl sm:text-5xl md:text-6xl mb-4 transform group-hover:scale-110 transition-transform duration-300 text-center">
+          {domain.icon}
+        </div>
 
-        
+        {/* Title */}
+        <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 group-hover:text-fuchsia-300 transition-colors text-center">
+          {domain.title}
+        </h3>
+
+        {/* Subtitle */}
+        <p className="text-xs sm:text-sm text-fuchsia-400 font-medium mb-3 text-center">
+          {domain.subtitle}
+        </p>
+
+        {/* Description */}
+        <p className="text-xs sm:text-sm text-gray-400 leading-relaxed text-center">
+          {domain.description}
+        </p>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const Domain = () => {
+  return (
+    <section className="relative min-h-screen py-12 sm:py-16 md:py-20 px-3 sm:px-4 md:px-8 overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="relative max-w-7xl mx-auto">
+        {/* Header */}
         <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                     w-[220px] h-[220px] rounded-full
-                     flex items-center justify-center
-                     bg-white/10 backdrop-blur-xl
-                     border border-purple-400
-                     shadow-[0_0_100px_rgba(168,85,247,1),
-                             0_0_200px_rgba(168,85,247,0.6),
-                             0_0_300px_rgba(168,85,247,0.3)]
-                     animate-pulseAura"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-12 sm:mb-16"
         >
-          <span className="text-3xl font-bold tracking-widest text-purple-200">
-            DOMAINS
-          </span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold  mb-3 sm:mb-4">
+            Innovation <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">Domains</span>
+          </h1>
+          <p className="text-gray-400 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-2">
+            Explore the cutting-edge domains where innovation meets impact
+          </p>
         </motion.div>
 
-        
-        <motion.div
-          className="absolute inset-0"
-          style={{ rotate: rotation }}
-          animate={{ rotate: 360 }}
-          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-        >
-          {domains.map((domain, index) => {
-            const angle = (index * angleStep - 90) * (Math.PI / 180);
-            const x = ORBIT_RADIUS * Math.cos(angle);
-            const y = ORBIT_RADIUS * Math.sin(angle);
+        {/* Domain cards grid - responsive columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
+          {domains.map((domain, index) => (
+            <DomainCard key={index} domain={domain} index={index} />
+          ))}
+        </div>
+      </div>
 
-            return (
-              <div
-                key={index}
-                className="absolute -translate-x-1/2 -translate-y-1/2"
-                style={{
-                  left: `calc(50% + ${x}px)`,
-                  top: `calc(50% + ${y}px)`,
-                }}
-              >
-                
-                <motion.div
-                  className="rounded-full bg-white/10 backdrop-blur-xl
-                             border border-white/30
-                             shadow-[0_0_40px_rgba(168,85,247,0.6)]
-                             hover:scale-110 hover:border-purple-400
-                             hover:shadow-[0_0_80px_rgba(168,85,247,1),
-                                           inset_0_0_50px_rgba(168,85,247,0.7)]
-                             animate-pulseOrb"
-                  style={{ width: DOMAIN_SIZE, height: DOMAIN_SIZE }}
-                >
-                   
-                  <motion.div
-                    style={{ rotate: inverseRotation }}
-                    className="w-full h-full flex flex-col items-center justify-center
-                               text-white text-center px-3"
-                  >
-                    <div className="text-4xl mb-1">{domain.icon}</div>
-                    <p className="text-xs font-semibold tracking-widest">
-                      {domain.title}
-                    </p>
-                    <p className="text-[13px] leading-snug text-purple-200 mt-2 italic">
-                      “{domain.quote}”
-                    </p>
-                  </motion.div>
-                </motion.div>
-              </div>
-            );
-          })}
-        </motion.div>
-
-
-        {Array.from({ length: 30 }).map((_, i) => (
+      {/* Animated particles */}
+      <div className="absolute inset-0 pointer-events-none">
+        {Array.from({ length: 20 }).map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-purple-400 rounded-full blur-sm"
+            className="absolute w-1 h-1 bg-purple-400 rounded-full"
             style={{
-              left: `${Math.random() * SIZE}px`,
-              top: `${Math.random() * SIZE}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
             }}
             animate={{
-              x: [0, Math.random() * 10 - 5, 0],
-              y: [0, Math.random() * 10 - 5, 0],
-              opacity: [0.3, 1, 0.3],
+              y: [0, -30, 0],
+              opacity: [0, 1, 0],
             }}
             transition={{
-              repeat: Infinity,
               duration: 3 + Math.random() * 2,
-              ease: "easeInOut",
+              repeat: Infinity,
+              delay: Math.random() * 2,
             }}
           />
         ))}
