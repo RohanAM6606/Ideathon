@@ -6,6 +6,8 @@ import EventDetails from '../components/events/EventDetails'
 import Domain from './Domain'
 import FaqSection from '../components/faq/FaqSection'
 import Footer from '../components/common/Footer'
+import Timeline from '../components/eventtimeline/Timeline'
+import Sponsers from '../components/sponsers/Sponsers'
 
 const Home = ({ onNavigateToRegistration }) => {
   return (
@@ -13,8 +15,9 @@ const Home = ({ onNavigateToRegistration }) => {
       <Navbar onNavigateToRegistration={onNavigateToRegistration} />
       <HeroSection onNavigateToRegistration={onNavigateToRegistration} />
       <Domain />
-      <About />
       <EventDetails />
+      <Timeline />
+      <Sponsers />
       <FaqSection />
 
       <Footer />
