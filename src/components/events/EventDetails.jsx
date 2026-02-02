@@ -182,8 +182,8 @@ const EventDetails = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 {([
-                  { icon: MapPin, label: "Venue", value: "Mini Hall 1, SRMIST" },
-                  { icon: Calendar, label: "Date", value: "January 26, 2026" },
+                  { icon: MapPin, label: "Venue", value: "Mini Hall 2, SRMIST" },
+                  { icon: Calendar, label: "Date", value: "February 26, 2026" },
                   { icon: Clock, label: "Time", value: "9 AM Onwards" },
                   { icon: Users, label: "Registration", value: "₹150 + Taxes" }
                 ]).map((item, i) => (
