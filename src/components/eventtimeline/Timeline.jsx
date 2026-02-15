@@ -14,12 +14,12 @@ const Timeline = () => {
       description: "Form your duos or squads... it's time to gear up, brainstorm, and register for the challenge of innovation!"
     },
     {
-      date: "19th Feb",
+      date: "15th Feb",
       title: "Forms Close & WhatsApp Group Access",
       description: "Registration closes. Participants will be added to the WhatsApp group and drive link will be shared for PPT submission."
     },
     {
-      date: "21st Feb",
+      date: "19th Feb",
       title: "PPT Submission Deadline",
       description: "Submit your presentation decks showcasing your innovative solutions and project details."
     },
