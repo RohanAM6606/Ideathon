@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 import logoImage from "../../assets/images/hack-logo.png";
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,46 +14,29 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Update active section based on current route
-  useEffect(() => {
-    if (location.pathname === '/register') {
-      setActiveSection('register');
-    } else if (location.pathname === '/') {
-      // Optionally detect which section is in view on home page
-      setActiveSection('home');
-    }
-  }, [location.pathname]);
-
   const navItems = [
     { id: "home", label: "Home", hash: "#home" },
     { id: "about", label: "About", hash: "#about" },
     { id: "timeline", label: "Timeline", hash: "#timeline" },
-    { id: "register", label: "Register", path: "/register" },
   ];
 
   const handleNavClick = (item) => {
     setActiveSection(item.id);
     setMenuOpen(false);
 
-    if (item.path) {
-      navigate(item.path);
-    } else if (item.hash) {
-      if (location.pathname !== '/') {
-        navigate('/' + item.hash);
-      } else {
-        const element = document.querySelector(`[data-section="${item.id}"]`);
-        if (element) {
-          const offsetTop = element.offsetTop - 80;
-          window.scrollTo({
-            top: offsetTop,
-            behavior: 'smooth'
-          });
-        } else if (item.id === 'home') {
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-          });
-        }
+    if (item.hash) {
+      const element = document.querySelector(`[data-section="${item.id}"]`);
+      if (element) {
+        const offsetTop = element.offsetTop - 80;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      } else if (item.id === 'home') {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
       }
     }
   };
@@ -127,6 +107,11 @@ const Navbar = () => {
                 <span className="relative z-10">{item.label}</span>
               </button>
             ))}
+            
+            {/* Registration Closed Badge */}
+            <div className="px-4 lg:px-6 py-2 rounded-xl text-sm lg:text-base font-medium bg-gray-800/50 border border-gray-600/30 text-gray-400 cursor-not-allowed">
+              Registration Closed
+            </div>
           </div>
 
           {/* Hamburger Button */}
@@ -165,6 +150,11 @@ const Navbar = () => {
                 {item.label}
               </button>
             ))}
+            
+            {/* Registration Closed Badge - Mobile */}
+            <div className="w-full text-center px-4 py-3 rounded-xl font-medium bg-gray-800/50 border border-gray-600/30 text-gray-400">
+              Registration Closed
+            </div>
           </div>
         </div>
       </div>

@@ -1,12 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import GridBackground from "../ui/GridBackground";
 import ideathonLogo from "../../assets/images/ideathon.png";
 import ideathon from '../../assets/images/ideathonn.png'
 
 export default function HeroSection() {
-  const navigate = useNavigate();
-
   const eventDate = new Date("2026-02-26T09:00:00");
 
   const getTimeLeft = () => {
@@ -69,20 +66,15 @@ export default function HeroSection() {
             ))}
           </div>
 
-          {/* CTA */}
+          {/* Registration Closed Message */}
           <div className="pt-6">
-            <button
-              onClick={() => navigate("/register")}
-              className="inline-flex items-center gap-2 px-8 py-4 md:px-10 md:py-4 rounded-lg font-semibold text-white text-base md:text-lg
-                         bg-gradient-to-r from-purple-600 to-purple-700
-                         border border-purple-400/30
-                         shadow-[0_4px_20px_rgba(168,85,247,0.3)]
-                         hover:shadow-[0_8px_30px_rgba(168,85,247,0.5)] hover:border-purple-400/50 hover:-translate-y-0.5
-                         active:translate-y-0
-                         transition-all duration-300"
-            >
-              Register Now →
-            </button>
+            <div className="inline-flex items-center gap-2 px-6 py-3 md:px-10 md:py-4 rounded-lg font-semibold text-base md:text-lg
+                         bg-gray-800/50 border border-gray-600/30 text-gray-400">
+              <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+              <span>Registration Closed</span>
+            </div>
           </div>
 
         </div>
